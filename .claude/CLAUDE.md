@@ -8,26 +8,29 @@
 
 ## 📚 通用规范（Guidelines）
 
-5 个跨项目复用的开发规范：
+7 个跨项目复用的开发规范：
 
 | 文件 | 说明 |
 |------|------|
-| [01-workflow.md](./guidelines/01-workflow.md) | 7 步开发工作流（需求→设计→代码→测试→审查→部署→验收） |
+| [01-workflow.md](./guidelines/01-workflow.md) | 9 步完整开发工作流（需求→设计→分支→实现→审查→提交→PR→审查回复→整理） |
 | [02-design-document.md](./guidelines/02-design-document.md) | 设计文档编写指南和审查标准 |
-| [03-branch-management.md](./guidelines/03-branch-management.md) | Git 分支命名、提交规范、PR 流程 |
+| [03-branch-management.md](./guidelines/03-branch-management.md) | Git 分支命名、base 分支选择、分支生命周期管理 |
 | [04-coding-principles.md](./guidelines/04-coding-principles.md) | 语言无关的编码原则（命名、组织、错误处理） |
 | [05-review-checklist.md](./guidelines/05-review-checklist.md) | 代码审查清单和质量检查标准 |
+| [06-pre-commit-review.md](./guidelines/06-pre-commit-review.md) | 提交前审查清单（7 项检查） |
+| [07-jira-conventions.md](./guidelines/07-jira-conventions.md) | JIRA 工单约定和最佳实践 |
 
 ---
 
 ## 🛠️ 通用 Skills
 
-3 个跨项目复用的能力工具：
+4 个跨项目复用的能力工具：
 
 | Skill | 说明 |
 |-------|------|
 | [jira-issue-reader](./skills/jira-issue-reader/) | 读取和分析 Jira 工作项 |
 | [jira-wiki-reader](./skills/jira-wiki-reader/) | 读取和解析 Confluence Wiki 文档 |
+| [jira-manage-ticket](./skills/jira-manage-ticket/) | 创建、更新、删除 JIRA 工单（CRUD） |
 | [pr-creator](./skills/pr-creator/) | 自动生成 PR 描述和创建 PR |
 
 详见 [Skills 总览](./skills/README.md)
@@ -69,8 +72,8 @@ AI 自动加载规范和 Skills
 ```
 claude-common/
 ├── .claude/
-│   ├── guidelines/ .............. 5 个通用规范
-│   ├── skills/ ................. 3 个通用 Skills
+│   ├── guidelines/ .............. 7 个通用规范
+│   ├── skills/ ................. 4 个通用 Skills
 │   ├── CLAUDE.md ............... 本文件（通用库入口）
 │   └── settings.json ........... 通用配置模板
 ├── .git/ ....................... Git 仓库
