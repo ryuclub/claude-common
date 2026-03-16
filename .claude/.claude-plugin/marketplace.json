@@ -1,0 +1,32 @@
+{
+  "name": "claude-generic-skills",
+  "owner": {
+    "name": "Generic Skills",
+    "email": "skills@anthropic.com"
+  },
+  "metadata": {
+    "description": "通用 Skills - 跨项目可复用的工具集合",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "generic-jira-tools",
+      "description": "Jira 工具 - Issue Reader 和 Wiki Reader",
+      "source": "./skills",
+      "strict": false,
+      "skills": [
+        "./skills/jira-issue-reader/SKILL.md",
+        "./skills/jira-wiki-reader/SKILL.md"
+      ]
+    },
+    {
+      "name": "generic-git-tools",
+      "description": "Git 工具 - PR 创建和管理",
+      "source": "./skills",
+      "strict": false,
+      "skills": [
+        "./skills/pr-creator/SKILL.md"
+      ]
+    }
+  ]
+}
