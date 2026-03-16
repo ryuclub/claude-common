@@ -1,149 +1,134 @@
-# AI 指南
+# Claude 通用规范库
 
-本文件由 AI 助手自动读取，作为项目级别的配置入口。
-开始工作前请参考以下规则文档。
+本仓库包含所有项目通用的 Claude Code 规范、Skills、配置模板。
 
-## AI 行为规则
-
-- **输出语言**：始终使用中文输出（包括 JIRA 评论、commit message、PR 内容）
-- **JIRA 评论格式**：使用 JIRA Wiki 标记，禁止使用 Markdown。规则：`h2.`/`h3.` 标题、`#` 有序列表、`*` 无序列表、`{{code}}` 行内代码、`*text*` 粗体
-- **commit message**：不添加 `Co-Authored-By` 等 AI 相关署名
-- **PR 内容**：不添加 AI 工具相关说明或链接
-
-## 规则文档
-
-- [开发工作流](.claude/guidelines/workflow.md)
-- [设计文档编写指南](.claude/guidelines/design-document.md) ⭐ 工作流第 2 步参考
-- [分支管理规则](.claude/guidelines/branch.md)
-- [编码规约](.claude/guidelines/coding.md)
-- [提交前审查基准](.claude/guidelines/pre-commit-review.md)
-
-## 可用的 Skills
-
-在工作中可通过 `/<skill-name>` 显式调用，或 AI 在工作流中自动识别使用。
-
-### 通用 Skills（跨项目复用）
-
-- [Jira Issue Reader](.claude/skills/jira-issue-reader/SKILL.md) — 读取和分析 Jira 工作项
-  - 调用方式：`/jira-issue-reader MOS-XXXX`
-  - 自动触发：工作流 Step 1（接收需求）中读取票号时
-- [Jira Wiki Reader](.claude/skills/jira-wiki-reader/SKILL.md) — 读取和解析 Jira Confluence Wiki
-  - 调用方式：`/jira-wiki-reader <URL|标题|PageID>`
-  - 自动触发：需要查询规范文档或设计文档时
-- [PR Creator](.claude/skills/pr-creator/SKILL.md) — 自动生成 PR 描述和创建 PR
-  - 调用方式：`/pr-creator`
-  - 自动触发：创建 PR 或编写 PR 描述时
-
-详见 [Skills 总览](.claude/skills/README.md)
-
-### Skills 来源
-
-- **通用 Skills**：由 `.claude/.claude-plugin/marketplace.json` 管理
-  - 存储路径：`.claude/skills/`
-  - 可复用：✅ 可直接复制到其他项目
-
-- **项目特定 Skills**：由 `.claude-local/.claude-plugin/marketplace.json` 管理
-  - 存储路径：`.claude-local/skills/`
-  - 可复用：❌ 仅本项目使用
-
-## 项目指导
-
-项目特定的配置和指导文件集中管理在 `/.claude-local/` 目录下。
-
-**⭐ 入口：** [项目特定指导](./..-local/CLAUDE.md) — 项目规范、standards、workflows
-
-**详情：** [项目 README](./../.claude-local/README.md) — 项目配置、自动化规则、API 访问
+项目会**自动从此仓库同步**规范和 Skills 到本地缓存（`.claude/.remote-cache/`）。
 
 ---
 
-## 核心规范（每个任务开始时遵循）
+## 📚 通用规范（Guidelines）
 
-按照以下规范执行所有任务。规范分为两层：
+5 个跨项目复用的开发规范：
 
-### 1️⃣ 通用指南（所有项目适用）
-
-详见 [通用开发指南](.claude/guidelines/README.md)
-
-1. **[开发工作流](.claude/guidelines/01-workflow.md)** — 7 步工作流规范
-   - 需求 → 设计 → 代码 → 测试 → 审查 → 部署 → 验收
-   - 适用：所有任务开始时
-   - **关键**：设计文档必须参考 [设计文档编写指南](.claude/guidelines/02-design-document.md)
-
-2. **[分支管理规则](.claude/guidelines/03-branch-management.md)** — Git 分支和提交规范
-   - 分支命名、提交规范、PR 流程
-   - 适用：所有 Git 操作、PR 创建时
-
-3. **[编码原则](.claude/guidelines/04-coding-principles.md)** — 语言无关的编码原则
-   - 命名规则、代码组织、可读性、错误处理
-   - 适用：所有代码编辑任务
-   - 注：具体实现由下面的项目特定规范细化
-
-4. **[代码审查清单](.claude/guidelines/05-review-checklist.md)** — 代码审查标准
-   - 审查要点、质量检查
-   - 适用：所有代码审查任务
-
-### 2️⃣ 项目特定规范（仅本项目适用）
-
-详见 [项目特定规范](./../.claude-local/standards/README.md) 或快速入口 [.claude-local/CLAUDE.md](./../.claude-local/CLAUDE.md)
-
-1. **[Go 编码标准](./../.claude-local/standards/01-go-coding-standard.md)** — 本项目的 Go 编码规范
-   - 项目结构、包组织、命名规则、接口设计、错误处理、日志、文档
-   - 适用：所有代码编辑、代码审查任务
-   - 补充：`.claude/guidelines/04-coding-principles.md`
-
-2. **[Go 测试框架](./../.claude-local/standards/02-testing-framework.md)** — 本项目的测试规范
-   - 单元测试、集成测试、性能基准、灰度测试、覆盖率要求
-   - 适用：编写/修改代码、测试相关任务
-
-3. **[项目工作流细化](./../.claude-local/standards/03-project-workflow.md)** — Mosavi 项目的工作流特化
-   - 项目特定的工作流步骤、流程、工具链
-   - 适用：所有项目任务（可选，如果与通用工作流有差异）
-
-4. **[CI/CD 和自动化](./../.claude-local/standards/04-ci-cd-pipeline.md)** — 项目的自动化规则
-   - CI/CD 流程、部署策略、灰度部署、自动回滚
-   - 适用：代码提交、部署任务
+| 文件 | 说明 |
+|------|------|
+| [01-workflow.md](./guidelines/01-workflow.md) | 7 步开发工作流（需求→设计→代码→测试→审查→部署→验收） |
+| [02-design-document.md](./guidelines/02-design-document.md) | 设计文档编写指南和审查标准 |
+| [03-branch-management.md](./guidelines/03-branch-management.md) | Git 分支命名、提交规范、PR 流程 |
+| [04-coding-principles.md](./guidelines/04-coding-principles.md) | 语言无关的编码原则（命名、组织、错误处理） |
+| [05-review-checklist.md](./guidelines/05-review-checklist.md) | 代码审查清单和质量检查标准 |
 
 ---
 
----
+## 🛠️ 通用 Skills
 
-## 🔍 配置加载机制
+3 个跨项目复用的能力工具：
 
-理解配置、规范和 skills 的发现流程：
+| Skill | 说明 |
+|-------|------|
+| [jira-issue-reader](./skills/jira-issue-reader/) | 读取和分析 Jira 工作项 |
+| [jira-wiki-reader](./skills/jira-wiki-reader/) | 读取和解析 Confluence Wiki 文档 |
+| [pr-creator](./skills/pr-creator/) | 自动生成 PR 描述和创建 PR |
 
-**快速入门：** [LOADING_STRATEGY.md](.claude/LOADING_STRATEGY.md) — 速查表、决策树、行动计划
-
-**深度阅读：**
-
-- [CONFIG_LOADING.md](.claude/CONFIG_LOADING.md) — 启动流程、层级结构、发现流程
-- [EXTERNAL_DISCOVERY.md](.claude/EXTERNAL_DISCOVERY.md) — 从 GitHub/共享位置动态发现 Skills
-- [RULESET_LOADING.md](.claude/RULESET_LOADING.md) — 规范和流程的动态加载方案对比
-
-**快速问答：**
-
-- Q: 通用配置如何发现项目规范？
-  A: 通过 CLAUDE.md 链接和项目特定的 `.claude-local/CLAUDE.md`
-- Q: 项目特定的 skills 如何被加载？
-  A: 通过 `.claude-local/.claude-plugin/settings.json` 和 marketplace.json（需 Claude Code 支持多 settings）
-- Q: 相对路径如何工作？
-  A: 所有路径相对于项目根目录；跨项目访问用 `../Mosavi-Push-Service/**`
+详见 [Skills 总览](./skills/README.md)
 
 ---
 
-## 自动触发规则
+## 🔄 项目如何使用
 
-### Skills 自动调用
+### 自动同步流程
 
-- **识别到 Jira 票号**（MOS-XXXX）→ 自动调用 `/jira-issue-reader`
-- **提到 Wiki 文档**（URL/标题）→ 自动调用 `/jira-wiki-reader`
-- **提到创建 PR** → 自动调用 `/pr-creator`
+```
+项目启动
+  ↓
+.claude/settings.json 触发 SessionStart hook
+  ↓
+.claude/hooks/auto-load.sh 执行
+  ↓
+git clone/pull claude-common → .claude/.remote-cache/
+  ↓
+AI 自动加载规范和 Skills
+  ↓
+开始工作
+```
 
-### 规范自动加载
+### 规范加载逻辑
 
-- **开始任何任务** → 自动加载 `.claude/guidelines/01-workflow.md`（工作流指导）
-- **编码或代码审查** → 自动加载 `.claude-local/standards/01-go-coding-standard.md`（Go 编码规范）
-- **测试相关任务** → 自动加载 `.claude-local/standards/02-testing-framework.md`（测试框架）
-- **分支、提交、PR** → 自动加载 `.claude/guidelines/03-branch-management.md`（分支管理）
-- **设计文档创建** → 自动加载 `.claude/guidelines/02-design-document.md`（设计规范）
+| 场景 | 加载源 |
+|------|-------|
+| 任何任务开始 | `guidelines/01-workflow.md` |
+| 编码或代码审查 | `项目的 standards/01-go-coding-standard.md` |
+| 测试相关 | `项目的 standards/02-testing-framework.md` |
+| Git/PR/分支 | `guidelines/03-branch-management.md` |
+| 设计文档创建 | `guidelines/02-design-document.md` |
 
-**原理：** AI 在对话开始时读取本 CLAUDE.md，看到这些规则和链接，在合适的任务场景中自动加载相应的规范。
+---
+
+## 📂 仓库结构
+
+```
+claude-common/
+├── .claude/
+│   ├── guidelines/ .............. 5 个通用规范
+│   ├── skills/ ................. 3 个通用 Skills
+│   ├── CLAUDE.md ............... 本文件（通用库入口）
+│   └── settings.json ........... 通用配置模板
+├── .git/ ....................... Git 仓库
+└── README.md ................... 项目说明
+
+项目使用时：
+.claude/.remote-cache/
+├── .git/
+├── .claude/
+│   ├── guidelines/ ............ 同步的规范
+│   └── skills/ ................ 同步的 Skills
+└── ...
+```
+
+---
+
+## 🚀 快速开始
+
+### 添加到新项目
+
+1. 在项目的 `.claude/hooks/auto-load.sh` 中配置：
+```bash
+REMOTE_REPO="https://github.com/ryuclub/claude-common.git"
+```
+
+2. 项目启动时 hook 自动同步
+
+3. 规范和 Skills 可在 `.claude/.remote-cache/` 中使用
+
+### 更新规范
+
+1. 在此仓库修改规范文件
+2. 提交并推送到 main 分支
+3. 项目会在 24h 内自动拉取最新版本（或手动删除 `.sync` 文件强制更新）
+
+---
+
+## ✅ 版本控制
+
+**提交到 Git：**
+- `.claude/guidelines/` — 所有规范文件
+- `.claude/skills/` — 所有 Skills
+- `.claude/CLAUDE.md` — 本文档
+- `.claude/settings.json` — 配置模板
+
+**不提交到 Git：**
+- `.claude/.remote-cache/` — 由项目 hook 生成的缓存
+- `.git/` 的改动（通常自动忽略）
+
+---
+
+## 🔗 相关文档
+
+- [Guidelines 总览](./guidelines/README.md)
+- [Skills 总览](./skills/README.md)
+
+---
+
+**最后更新：** 2026-03-16
+
+本仓库的目的：为所有项目提供一套统一的、可复用的规范和工具。
