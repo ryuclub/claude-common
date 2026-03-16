@@ -1,0 +1,16 @@
+# 本仓库只包含通用规范和 Skills
+# 项目特定的配置由各项目自己在 .claude/ 中管理
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 本地临时文件
+*.local.json
+.env.local
