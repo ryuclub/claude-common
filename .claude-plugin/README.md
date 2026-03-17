@@ -16,8 +16,8 @@
 **包含的 plugins：**
 
 1. **generic-jira-tools**
-   - jira-issue-reader
-   - jira-wiki-reader
+   - jira-manage-ticket（读取、创建、更新、删除工单）
+   - jira-wiki-reader（读取 Confluence Wiki）
 
 2. **generic-git-tools**
    - pr-creator
@@ -44,7 +44,7 @@
 
 ## 📝 修改通用 Skills
 
-如果要改进通用 skills（如增强 jira-issue-reader），直接在 `../**/SKILL.md` 中修改。
+如果要改进通用 skills（如增强 jira-manage-ticket），直接在 `../**/SKILL.md` 中修改。
 
 该改进会自动应用到所有使用该 `.claude/` 副本的项目。
 

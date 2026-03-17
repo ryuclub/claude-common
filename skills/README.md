@@ -6,19 +6,27 @@
 
 ## 📋 可用的 Skills
 
-### 1. jira-issue-reader
+### 1. jira-manage-ticket
 
-**目标：** 读取和分析 Jira 工作项（Issue）
+**目标：** 创建、读取、更新、删除 JIRA 工单（CRUD + 搜索）
 
 **调用方式：**
 ```bash
-/jira-issue-reader MOS-2590
+# 读取工单
+python3 scripts/jira_api.py get MOS-2590
+
+# 创建工单
+python3 scripts/jira_api.py create-task "标题" "描述" 5 "任务"
+
+# 搜索工单
+python3 scripts/jira_api.py search 'project = MOS'
 ```
 
 **特点：**
 - 支持 Jira REST API v3
-- 获取工作项详情、历史、评论
-- 自动触发：当用户提到 MOS-XXXX 时
+- 获取工作项、创建、更新、删除、状态转换
+- JQL 搜索支持
+- 环境变量优先读取（SessionStart hook 自动导出）
 
 ---
 

@@ -11,13 +11,12 @@
   "plugins": [
     {
       "name": "generic-jira-tools",
-      "description": "Jira 工具 - Issue Reader、Wiki Reader 和 Ticket Manager",
+      "description": "Jira 工具 - Ticket Manager 和 Wiki Reader",
       "source": "./skills",
       "strict": false,
       "skills": [
-        "./skills/jira-issue-reader/SKILL.md",
-        "./skills/jira-wiki-reader/SKILL.md",
-        "./skills/jira-manage-ticket/SKILL.md"
+        "./skills/jira-manage-ticket/SKILL.md",
+        "./skills/jira-wiki-reader/SKILL.md"
       ]
     },
     {

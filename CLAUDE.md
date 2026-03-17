@@ -24,13 +24,12 @@
 
 ## 🛠️ 通用 Skills
 
-4 个跨项目复用的能力工具：
+3 个跨项目复用的能力工具：
 
 | Skill | 说明 |
 |-------|------|
-| [jira-issue-reader](./skills/jira-issue-reader/) | 读取和分析 Jira 工作项 |
+| [jira-manage-ticket](./skills/jira-manage-ticket/) | 创建、读取、更新、删除 JIRA 工单（CRUD + 搜索） |
 | [jira-wiki-reader](./skills/jira-wiki-reader/) | 读取和解析 Confluence Wiki 文档 |
-| [jira-manage-ticket](./skills/jira-manage-ticket/) | 创建、更新、删除 JIRA 工单（CRUD） |
 | [pr-creator](./skills/pr-creator/) | 自动生成 PR 描述和创建 PR |
 
 详见 [Skills 总览](./skills/README.md)

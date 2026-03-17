@@ -54,9 +54,10 @@ def load_env(env_path: str = None) -> dict:
 class JiraAPI:
     def __init__(self):
         env = load_env()
-        self.username = env.get("ATLASSIAN_USERNAME") or os.environ.get("ATLASSIAN_USERNAME")
-        self.api_key = env.get("ATLASSIAN_API_KEY") or os.environ.get("ATLASSIAN_API_KEY")
-        self.domain = env.get("ATLASSIAN_DOMAIN") or os.environ.get("ATLASSIAN_DOMAIN")
+        # 环境变量优先（SessionStart hook 已导出），降级到 .env 文件
+        self.username = os.environ.get("ATLASSIAN_USERNAME") or env.get("ATLASSIAN_USERNAME")
+        self.api_key = os.environ.get("ATLASSIAN_API_KEY") or env.get("ATLASSIAN_API_KEY")
+        self.domain = os.environ.get("ATLASSIAN_DOMAIN") or env.get("ATLASSIAN_DOMAIN")
 
         if not all([self.username, self.api_key, self.domain]):
             print("Error: 认证信息未设置。")
