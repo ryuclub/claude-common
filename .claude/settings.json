@@ -16,16 +16,6 @@
       "./design"
     ]
   },
-  "hooks": {
-    "SessionStart": [
-      {
-        "type": "command",
-        "command": "bash .claude-local/hooks/auto-load.sh",
-        "async": true,
-        "statusMessage": "Initializing project configuration..."
-      }
-    ]
-  },
   "enabledPlugins": {
     "document-skills@anthropic-agent-skills": true,
     "example-skills@anthropic-agent-skills": true,
