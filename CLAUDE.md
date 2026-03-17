@@ -24,7 +24,7 @@
 
 ## 🛠️ 通用 Skills
 
-3 个跨项目复用的能力工具：
+提供跨项目复用的能力工具：
 
 | Skill | 说明 |
 |-------|------|
@@ -43,13 +43,11 @@
 ```
 项目启动
   ↓
-.claude/settings.json 触发 SessionStart hook
-  ↓
-.claude/hooks/auto-load.sh 执行
+.claude/hooks/auto-load.sh 执行（需在项目中配置）
   ↓
 git clone/pull claude-common → .claude/.remote-cache/
   ↓
-AI 自动加载规范和 Skills
+项目加载规范和 Skills（需在 settings.json 中启用）
   ↓
 开始工作
 ```
@@ -71,7 +69,7 @@ AI 自动加载规范和 Skills
 ```
 claude-common/
 ├── guidelines/ ................. 7 个通用规范
-├── skills/ ..................... 4 个通用 Skills
+├── skills/ ..................... 通用 Skills
 ├── CLAUDE.md ................... 本文件（通用库入口）
 ├── settings.json .............. 通用配置模板
 ├── README.md ................... 项目说明

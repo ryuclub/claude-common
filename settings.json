@@ -1,19 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Read(./**)",
-      "Read(../**)",
-      "Bash(git:*)",
-      "Bash(go fmt:*)",
-      "Bash(go vet:*)",
-      "Bash(go build:*)"
-    ],
-    "additionalDirectories": [
-      "./internal",
-      "./cmd",
-      "./.claude",
-      "./.claude-local",
-      "./design"
+      "Read(./.claude/**)",
+      "Bash(git:*)"
     ]
   },
   "enabledPlugins": {
