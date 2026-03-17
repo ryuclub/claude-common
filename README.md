@@ -5,8 +5,8 @@
 ## 用途
 
 为所有项目提供：
-- **5 个通用开发规范**（guidelines/）
-- **3 个通用能力工具**（skills/）
+- **7 个通用开发规范**（guidelines/）
+- **4 个通用能力工具**（skills/）
 - **项目配置模板**（settings.json）
 
 ## 使用方式
@@ -21,9 +21,9 @@ git clone --depth=1 https://github.com/ryuclub/claude-common.git .claude/.remote
 
 ## 内容
 
-- [`.claude/guidelines/`](./.claude/guidelines/) — 5 个通用规范
-- [`.claude/skills/`](./.claude/skills/) — 3 个通用 Skills
-- [`.claude/CLAUDE.md`](./.claude/CLAUDE.md) — 规范库入口
+- [`guidelines/`](./guidelines/) — 7 个通用规范
+- [`skills/`](./skills/) — 4 个通用 Skills
+- [`CLAUDE.md`](./CLAUDE.md) — 规范库入口
 
 ## 提交规则
 

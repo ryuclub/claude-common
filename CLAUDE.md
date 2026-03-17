@@ -71,20 +71,19 @@ AI 自动加载规范和 Skills
 
 ```
 claude-common/
-├── .claude/
-│   ├── guidelines/ .............. 7 个通用规范
-│   ├── skills/ ................. 4 个通用 Skills
-│   ├── CLAUDE.md ............... 本文件（通用库入口）
-│   └── settings.json ........... 通用配置模板
-├── .git/ ....................... Git 仓库
-└── README.md ................... 项目说明
+├── guidelines/ ................. 7 个通用规范
+├── skills/ ..................... 4 个通用 Skills
+├── CLAUDE.md ................... 本文件（通用库入口）
+├── settings.json .............. 通用配置模板
+├── README.md ................... 项目说明
+├── hooks/ ...................... 辅助脚本
+└── .git/ ....................... Git 仓库
 
-项目使用时：
-.claude/.remote-cache/
-├── .git/
-├── .claude/
-│   ├── guidelines/ ............ 同步的规范
-│   └── skills/ ................ 同步的 Skills
+项目同步后（.claude/.remote-cache/）：
+├── guidelines/ ................ 规范文件
+├── skills/ .................... Skills 目录
+├── CLAUDE.md
+├── settings.json
 └── ...
 ```
 
@@ -114,14 +113,16 @@ REMOTE_REPO="https://github.com/ryuclub/claude-common.git"
 ## ✅ 版本控制
 
 **提交到 Git：**
-- `.claude/guidelines/` — 所有规范文件
-- `.claude/skills/` — 所有 Skills
-- `.claude/CLAUDE.md` — 本文档
-- `.claude/settings.json` — 配置模板
+
+- `guidelines/` — 所有规范文件
+- `skills/` — 所有 Skills
+- `CLAUDE.md` — 本文档
+- `settings.json` — 配置模板
+- `hooks/` — 辅助脚本
 
 **不提交到 Git：**
-- `.claude/.remote-cache/` — 由项目 hook 生成的缓存
-- `.git/` 的改动（通常自动忽略）
+
+- 项目生成的缓存（`.claude/.remote-cache/` 在各项目中）
 
 ---
 
