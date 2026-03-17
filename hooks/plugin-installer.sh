@@ -32,10 +32,15 @@ MARKETPLACES=(
 )
 
 for marketplace in "${MARKETPLACES[@]}"; do
-  if claude plugin marketplace add "$marketplace"; then
-    log "注册成功: $marketplace"
+  # 检查是否已注册
+  if claude plugin marketplace list 2>/dev/null | grep -q "$marketplace"; then
+    info "已注册: $marketplace"
   else
-    warn "注册失败: $marketplace"
+    if claude plugin marketplace add "$marketplace"; then
+      log "注册成功: $marketplace"
+    else
+      warn "注册失败: $marketplace"
+    fi
   fi
 done
 
@@ -49,10 +54,15 @@ PLUGINS=(
 )
 
 for plugin in "${PLUGINS[@]}"; do
-  if claude plugin install "$plugin"; then
-    log "已安装: $plugin"
+  # 检查是否已安装
+  if claude plugin list 2>/dev/null | grep -q "^${plugin}"; then
+    info "已安装: $plugin"
   else
-    warn "安装失败: $plugin"
+    if claude plugin install "$plugin"; then
+      log "已安装: $plugin"
+    else
+      warn "安装失败: $plugin"
+    fi
   fi
 done
 
@@ -66,10 +76,15 @@ ANTHROPIC_SKILLS=(
 )
 
 for skill in "${ANTHROPIC_SKILLS[@]}"; do
-  if claude plugin install "$skill"; then
-    log "已安装: $skill"
+  # 检查是否已安装
+  if claude plugin list 2>/dev/null | grep -q "^${skill}"; then
+    info "已安装: $skill"
   else
-    warn "安装失败: $skill"
+    if claude plugin install "$skill"; then
+      log "已安装: $skill"
+    else
+      warn "安装失败: $skill"
+    fi
   fi
 done
 
@@ -82,10 +97,15 @@ COMMON_SKILLS=(
 )
 
 for skill in "${COMMON_SKILLS[@]}"; do
-  if claude plugin install "$skill"; then
-    log "已安装: $skill"
+  # 检查是否已安装
+  if claude plugin list 2>/dev/null | grep -q "^${skill}"; then
+    info "已安装: $skill"
   else
-    warn "安装失败: $skill"
+    if claude plugin install "$skill"; then
+      log "已安装: $skill"
+    else
+      warn "安装失败: $skill"
+    fi
   fi
 done
 
