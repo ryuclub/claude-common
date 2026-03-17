@@ -38,16 +38,20 @@
 
 ## 🔄 项目如何使用
 
-### 自动同步流程
+### 自动同步和初始化流程
 
 ```
 项目启动
   ↓
-.claude/hooks/auto-load.sh 执行（需在项目中配置）
+.claude/hooks/auto-load.sh 执行
   ↓
 git clone/pull claude-common → .claude/.remote-cache/
   ↓
-项目加载规范和 Skills（需在 settings.json 中启用）
+执行 .claude/.remote-cache/hooks/init.sh
+  ├─ 复制 settings.json（如果项目还没有）
+  └─ 运行 plugin-installer.sh 检查 plugins
+  ↓
+加载规范和 Skills
   ↓
 开始工作
 ```
@@ -98,6 +102,31 @@ REMOTE_REPO="https://github.com/ryuclub/claude-common.git"
 2. 项目启动时 hook 自动同步
 
 3. 规范和 Skills 可在 `.claude/.remote-cache/` 中使用
+
+### 首次设置：自动检查和安装 Plugins
+
+项目配置了以下官方 plugins，每次启动会自动检查：
+
+- document-skills、example-skills、claude-api
+- code-review、github、code-simplifier
+- generic-jira-tools、generic-git-tools
+
+**自动检查和安装：**
+- 项目启动时自动运行 `hooks/plugin-installer.sh`
+- 检查缺失的 plugins 并提示安装命令
+- 如需手动安装，运行以下命令之一：
+
+```bash
+# 命令行方式（推荐）
+/plugin install document-skills@anthropic-agent-skills
+/plugin install example-skills@anthropic-agent-skills
+/plugin install claude-api@anthropic-agent-skills
+/plugin install code-review@claude-plugins-official
+/plugin install github@claude-plugins-official
+/plugin install code-simplifier@claude-plugins-official
+```
+
+或使用图形界面：`/plugin > Discover` 浏览并安装
 
 ### 更新规范
 

@@ -10,6 +10,9 @@
     "example-skills@anthropic-agent-skills": true,
     "claude-api@anthropic-agent-skills": true,
     "generic-jira-tools@claude-generic-skills": true,
-    "generic-git-tools@claude-generic-skills": true
+    "generic-git-tools@claude-generic-skills": true,
+    "code-review@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true
   }
 }

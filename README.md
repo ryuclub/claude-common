@@ -13,11 +13,21 @@
 
 项目通过 hook 自动从本仓库同步规范和 Skills：
 
+**在 `.claude/hooks/auto-load.sh` 中添加：**
+
 ```bash
+# 同步 claude-common
 git clone --depth=1 https://github.com/ryuclub/claude-common.git .claude/.remote-cache/
+
+# 调用初始化脚本
+if [ -f ".claude/.remote-cache/hooks/init.sh" ]; then
+  bash .claude/.remote-cache/hooks/init.sh ".claude/.remote-cache"
+fi
 ```
 
-然后 AI 会自动加载规范和 Skills 到项目工作流中。
+init.sh 会自动：
+- 复制 settings.json（如果项目还没有）
+- 检查和提示安装缺失的 plugins
 
 ## 内容
 
