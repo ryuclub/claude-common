@@ -32,10 +32,10 @@ MARKETPLACES=(
 )
 
 for marketplace in "${MARKETPLACES[@]}"; do
-  if timeout 30 claude plugin marketplace add "$marketplace" 2>/dev/null; then
+  if claude plugin marketplace add "$marketplace"; then
     log "注册成功: $marketplace"
   else
-    warn "注册失败或已注册: $marketplace"
+    warn "注册失败: $marketplace"
   fi
 done
 
@@ -49,10 +49,10 @@ PLUGINS=(
 )
 
 for plugin in "${PLUGINS[@]}"; do
-  if timeout 30 claude plugin install "$plugin" 2>/dev/null; then
+  if claude plugin install "$plugin"; then
     log "已安装: $plugin"
   else
-    warn "安装失败或已安装: $plugin"
+    warn "安装失败: $plugin"
   fi
 done
 
@@ -66,10 +66,10 @@ ANTHROPIC_SKILLS=(
 )
 
 for skill in "${ANTHROPIC_SKILLS[@]}"; do
-  if timeout 30 claude plugin install "$skill" 2>/dev/null; then
+  if claude plugin install "$skill"; then
     log "已安装: $skill"
   else
-    warn "安装失败或已安装: $skill"
+    warn "安装失败: $skill"
   fi
 done
 
@@ -82,10 +82,10 @@ COMMON_SKILLS=(
 )
 
 for skill in "${COMMON_SKILLS[@]}"; do
-  if timeout 30 claude plugin install "$skill" 2>/dev/null; then
+  if claude plugin install "$skill"; then
     log "已安装: $skill"
   else
-    warn "安装失败或已安装: $skill"
+    warn "安装失败: $skill"
   fi
 done
 
