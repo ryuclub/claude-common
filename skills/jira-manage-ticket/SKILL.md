@@ -1,3 +1,13 @@
+---
+name: jira-manage-ticket
+description: 通过 JIRA REST API 管理工单。支持创建、读取、更新、删除工单，批量创建子工单，状态转换，以及 JQL 搜索。当用户需要查询工单、新建工单、改字段、转状态、搜票号时使用。
+license: Proprietary
+metadata:
+  author: Mosavi Team
+  version: "1.0"
+compatibility: 需要 Atlassian 凭证（ATLASSIAN_USERNAME / ATLASSIAN_API_KEY / ATLASSIAN_DOMAIN），通过 .claude/config/claude.env 加载；需要 python3 运行 scripts/jira_api.py
+---
+
 # jira-manage-ticket Skill
 
 JIRA REST API 工单管理工具 - 支持创建、读取、更新、删除工单和状态转换。

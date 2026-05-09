@@ -32,7 +32,7 @@ init.sh 会自动：
 ## 内容
 
 - [`guidelines/`](./guidelines/) — 7 个通用规范
-- [`skills/`](./skills/) — 4 个通用 Skills
+- [`skills/`](./skills/) — 3 个通用 Skills
 - [`CLAUDE.md`](./CLAUDE.md) — 规范库入口
 
 ## 提交规则

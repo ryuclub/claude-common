@@ -10,8 +10,8 @@ if echo "$COMMAND" | grep -qE "git commit"; then
   # 优先级：REVIEW_DOC_PATH > .remote-cache 版本 > 本地版本
   if [ -n "$REVIEW_DOC_PATH" ]; then
     REVIEW_DOC="$REVIEW_DOC_PATH"
-  elif [ -f ".claude/.remote-cache/.claude/guidelines/06-pre-commit-review.md" ]; then
-    REVIEW_DOC=".claude/.remote-cache/.claude/guidelines/06-pre-commit-review.md"
+  elif [ -f ".claude/.remote-cache/guidelines/06-pre-commit-review.md" ]; then
+    REVIEW_DOC=".claude/.remote-cache/guidelines/06-pre-commit-review.md"
   else
     REVIEW_DOC=".claude/guidelines/pre-commit-review.md"
   fi

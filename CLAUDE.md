@@ -107,9 +107,13 @@ REMOTE_REPO="https://github.com/ryuclub/claude-common.git"
 
 项目配置了以下官方 plugins，每次启动会自动检查：
 
-- document-skills、example-skills、claude-api
+- document-skills（含上游 anthropics/skills 仓库的全部 17 个 skill）
 - code-review、github、code-simplifier
 - generic-jira-tools、generic-git-tools
+
+> 历史上还安装过 `example-skills` / `claude-api` 两个 plugin，与 `document-skills`
+> 共享同一个上游 repo（`source: "./"`），导致 skill 被注册 3 遍、磁盘占用 3 倍。
+> 现 `plugin-installer.sh` 启动时会**自动卸载**这两个废弃 plugin。
 
 **自动检查和安装：**
 - 项目启动时自动运行 `hooks/plugin-installer.sh`
@@ -119,8 +123,6 @@ REMOTE_REPO="https://github.com/ryuclub/claude-common.git"
 ```bash
 # 命令行方式（推荐）
 /plugin install document-skills@anthropic-agent-skills
-/plugin install example-skills@anthropic-agent-skills
-/plugin install claude-api@anthropic-agent-skills
 /plugin install code-review@claude-plugins-official
 /plugin install github@claude-plugins-official
 /plugin install code-simplifier@claude-plugins-official
@@ -159,6 +161,6 @@ REMOTE_REPO="https://github.com/ryuclub/claude-common.git"
 
 ---
 
-**最后更新：** 2026-03-16
-
 本仓库的目的：为所有项目提供一套统一的、可复用的规范和工具。
+
+> 文档更新时间以 git 历史为准：`git log -1 --format=%cs CLAUDE.md`
