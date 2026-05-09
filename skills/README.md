@@ -90,7 +90,3 @@ python3 scripts/jira_api.py search 'project = MOS'
 
 - **通用 Skills** 的改进会自动应用到所有使用该目录的项目
 - **项目特定的改进** 应保存在项目自己的 `.claude/skills/` 中，不影响其他项目
-
----
-
-**最后更新：** 2026-03-16

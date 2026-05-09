@@ -12,6 +12,16 @@ log() { echo -e "${GREEN}✓${NC} $1"; }
 warn() { echo -e "${YELLOW}⚠${NC} $1"; }
 info() { echo "  $1"; }
 
+# 检查指定 plugin 是否已安装。
+# `claude plugin list` 实际输出为 "  ❯ name@marketplace" 这种带前缀的格式，
+# 早期使用 grep -q "^${plugin}" 因 ^ 锚定行首而永远不命中，导致：
+#   - 卸载段：跳过卸载（静默失败）
+#   - 安装段：每次都误判未装、走 install 命令（CLI 自身幂等才掩盖此 bug）
+# 现匹配 "name 出现在某行末尾、且前面是空白" —— 兼容当前的箭头格式与未来可能的纯文本格式。
+plugin_installed() {
+  claude plugin list 2>/dev/null | grep -qE "(^|[[:space:]])${1}\$"
+}
+
 echo ""
 echo "🔌 初始化插件和 Skills..."
 echo ""
@@ -55,7 +65,7 @@ PLUGINS=(
 
 for plugin in "${PLUGINS[@]}"; do
   # 检查是否已安装
-  if claude plugin list 2>/dev/null | grep -q "^${plugin}"; then
+  if plugin_installed "$plugin"; then
     info "已安装: $plugin"
   else
     if claude plugin install "$plugin"; then
@@ -66,18 +76,38 @@ for plugin in "${PLUGINS[@]}"; do
   fi
 done
 
-# 3. 安装 Anthropic Skills
+# 3. 卸载已废弃的 Anthropic Skills plugin
+# 上游 anthropics/skills 仓库为 document-skills / example-skills / claude-api
+# 三个 plugin 都声明了 source: "./"，每装一个都会 clone 整棵 repo（含全部 17 个
+# skill 目录），导致同一份 skill 被注册 3 遍、磁盘占用 3 倍。
+# 现统一只保留 document-skills；其安装目录依然包含全部 17 个 skill，功能不缺失。
 echo ""
-info "安装 Anthropic Skills..."
-ANTHROPIC_SKILLS=(
-  "document-skills@anthropic-agent-skills"
+info "清理已废弃的 Anthropic Skills plugin..."
+OBSOLETE_PLUGINS=(
   "example-skills@anthropic-agent-skills"
   "claude-api@anthropic-agent-skills"
 )
 
+for plugin in "${OBSOLETE_PLUGINS[@]}"; do
+  if plugin_installed "$plugin"; then
+    if claude plugin uninstall "$plugin"; then
+      log "已卸载（去重）: $plugin"
+    else
+      warn "卸载失败: $plugin"
+    fi
+  fi
+done
+
+# 4. 安装 Anthropic Skills（仅保留 document-skills，已含全部 17 个 skill）
+echo ""
+info "安装 Anthropic Skills..."
+ANTHROPIC_SKILLS=(
+  "document-skills@anthropic-agent-skills"
+)
+
 for skill in "${ANTHROPIC_SKILLS[@]}"; do
   # 检查是否已安装
-  if claude plugin list 2>/dev/null | grep -q "^${skill}"; then
+  if plugin_installed "$skill"; then
     info "已安装: $skill"
   else
     if claude plugin install "$skill"; then
@@ -88,7 +118,7 @@ for skill in "${ANTHROPIC_SKILLS[@]}"; do
   fi
 done
 
-# 4. 安装通用库的 Skills
+# 5. 安装通用库的 Skills
 echo ""
 info "安装通用库 Skills..."
 COMMON_SKILLS=(
@@ -98,7 +128,7 @@ COMMON_SKILLS=(
 
 for skill in "${COMMON_SKILLS[@]}"; do
   # 检查是否已安装
-  if claude plugin list 2>/dev/null | grep -q "^${skill}"; then
+  if plugin_installed "$skill"; then
     info "已安装: $skill"
   else
     if claude plugin install "$skill"; then
