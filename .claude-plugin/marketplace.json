@@ -12,20 +12,20 @@
     {
       "name": "generic-jira-tools",
       "description": "Jira 工具 - Ticket Manager 和 Wiki Reader",
-      "source": "./skills",
+      "source": "./",
       "strict": false,
       "skills": [
-        "./skills/jira-manage-ticket/SKILL.md",
-        "./skills/jira-wiki-reader/SKILL.md"
+        "./skills/jira-manage-ticket",
+        "./skills/jira-wiki-reader"
       ]
     },
     {
       "name": "generic-git-tools",
       "description": "Git 工具 - PR 创建和管理",
-      "source": "./skills",
+      "source": "./",
       "strict": false,
       "skills": [
-        "./skills/pr-creator/SKILL.md"
+        "./skills/pr-creator"
       ]
     }
   ]

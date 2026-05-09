@@ -1,9 +1,9 @@
 # 设计文档编写指南
 
-**参考：** [开发工作流](workflow.md) 第 2 步
+**参考：** [开发工作流](01-workflow.md) 第 2 步
 
 **工作流上下文：**
-1. 第 1 步：读取 Jira 票 (参考 [Jira API Access Skill](../../.claude/skills/jira-api-access.md))
+1. 第 1 步：读取 Jira 票（使用 [`jira-manage-ticket`](../skills/jira-manage-ticket/SKILL.md) Skill）
 2. **第 2 步：创建设计文档** ← 本指南 ⭐
 3. 第 3-7 步：编码、提交、PR
 

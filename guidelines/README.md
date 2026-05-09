@@ -25,11 +25,19 @@
 4. **[编码原则](./04-coding-principles.md)** — 语言无关的编码原则
    - 命名规则、代码组织、可读性、错误处理
    - 适用：所有代码编辑任务
-   - 注：具体实现由项目的 `.claude-local/standards/` 细化
+   - 注：具体实现由项目自己的 `.claude/standards/` 细化
 
 5. **[代码审查清单](./05-review-checklist.md)** — 代码审查标准
    - 审查要点、质量检查、安全审查
    - 适用：所有代码审查任务
+
+6. **[提交前审查](./06-pre-commit-review.md)** — 提交前 7 项检查
+   - `git commit` 之前必跑的检查清单
+   - 适用：所有提交动作（由 `hooks/pre-commit-review.sh` 自动展示）
+
+7. **[JIRA 约定](./07-jira-conventions.md)** — JIRA 工单约定
+   - 票号格式、字段使用、状态流转
+   - 适用：所有涉及 JIRA 的工作
 
 ---
 
@@ -37,9 +45,9 @@
 
 | 通用指南 | 项目特定规范 | 说明 |
 | -------- | -------- | ---- |
-| 04-编码原则 | .claude-local/standards/01-go-coding-standard.md | 原则 + 具体实现 |
-| 05-代码审查清单 | .claude-local/standards/02-testing-framework.md | 原则 + 项目规范 |
-| 03-分支管理规则 | .claude-local/standards/03-project-workflow.md | 规则 + 项目细化 |
+| 04-编码原则 | 项目 .claude/standards/01-go-coding-standard.md | 原则 + 具体实现 |
+| 05-代码审查清单 | 项目 .claude/standards/02-testing-framework.md | 原则 + 项目规范 |
+| 03-分支管理规则 | 项目 .claude/standards/03-project-workflow.md | 规则 + 项目细化 |
 
 ---
 

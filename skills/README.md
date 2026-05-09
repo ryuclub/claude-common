@@ -72,9 +72,7 @@ python3 scripts/jira_api.py search 'project = MOS'
 
 ## 🔗 项目特定 Skills
 
-项目特定的 Skills 保存在 `.claude-local/skills/` 目录下。
-
-详见 [.claude-local/skills/README.md](../../.claude-local/skills/README.md)
+项目特定的 Skills 保存在项目自己的 `.claude/skills/` 目录下，与 `.claude/.remote-cache/skills/`（通用 Skills 缓存）分开管理。
 
 ---
 
@@ -91,7 +89,7 @@ python3 scripts/jira_api.py search 'project = MOS'
 ## 更新和维护
 
 - **通用 Skills** 的改进会自动应用到所有使用该目录的项目
-- **项目特定的改进** 应保存在 `.claude-local/skills/` 中，不影响其他项目
+- **项目特定的改进** 应保存在项目自己的 `.claude/skills/` 中，不影响其他项目
 
 ---
 

@@ -7,13 +7,13 @@
 
 **如何读取 Jira 票号？**
 
-参考 **Skill: [Jira API Access](../../.claude/skills/jira-api-access.md)** — 通用指导文档
+使用通用 Skill **`jira-manage-ticket`**（见 [skills/jira-manage-ticket/SKILL.md](../skills/jira-manage-ticket/SKILL.md)）。
 
-项目特定配置（Jira 邮箱、Token、Domain）在 `.claude-local/config/` 中
+项目特定配置（Jira 邮箱、Token、Domain）在 `.claude/config/claude.env` 中。
 
 **实现方式：**
-- 自动调用：AI 识别到需要读取票号时，自动调用 `jira-api-access` Skill
-- 手动调用：用户可输入 `/jira-api-access <PROJECT-KEY>-XXXX` 显式调用
+- 自动调用：AI 识别到需要读取票号时，自动调用 `jira-manage-ticket` Skill
+- 手动调用：`python3 .claude/.remote-cache/skills/jira-manage-ticket/scripts/jira_api.py get <PROJECT-KEY>-XXXX`
 
 **⚠️ 关键规则：票号读取失败处理**
 - 如果 Jira API 返回 404 或权限错误，**立即停止流程**
